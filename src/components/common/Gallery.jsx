@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-// Asset Imports
+// Assets
 import GodImg from "../../assets/god_image.jpg";
 import InteriorImg from "../../assets/wall_image.jpg";
 import ParkImg from "../../assets/park_image.png";
@@ -19,100 +19,66 @@ const galleryItems = [
 ];
 
 const Gallery = () => {
-  const doubleItems = [...galleryItems, ...galleryItems];
-
   return (
     <section
-      className="relative py-24 lg:py-32 bg-[#FAFAF9] overflow-hidden"
       id="gallery"
+      className="relative py-20 lg:py-28 bg-[#FAFAF9] overflow-hidden"
     >
       {/* Background Text */}
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 text-[10rem] lg:text-[14rem] font-black text-slate-200/20 select-none pointer-events-none font-berkshire whitespace-nowrap z-0">
-        VKS GALLERY
+      <div className="absolute top-10 left-1/2 -translate-x-1/2 text-[5rem] sm:text-[8rem] lg:text-[12rem] font-black text-slate-200/20 pointer-events-none font-berkshire whitespace-nowrap">
+        GALLERY
       </div>
 
-      <div className="relative z-10">
-        {/* Header Section */}
-        <div className="flex flex-col items-center text-center mb-16 px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-4 mb-4"
-          >
-            <span className="w-12 h-px bg-orange-600/40" />
-            <span className="text-orange-600 font-bold tracking-[0.4em] text-[10px] uppercase">
-              The Showcase
-            </span>
-            <span className="w-12 h-px bg-orange-600/40" />
-          </motion.div>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-5xl md:text-7xl font-berkshire text-slate-900 tracking-tight"
-          >
-            Our <span className="text-orange-500">Master Strokes</span>
-          </motion.h2>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+        {/* Header */}
+        <div className="text-center mb-14">
+          <p className="text-orange-600 font-bold tracking-[0.3em] text-xs mb-3 uppercase">
+            Our Works
+          </p>
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-berkshire text-slate-900">
+            Masterpieces That <span className="text-orange-500">Inspire</span>
+          </h2>
         </div>
 
-        {/* Infinite Carousel */}
-        <div className="relative w-full overflow-hidden group">
-          <div className="flex w-max animate-carousel-infinite group-hover:pause-animation py-4">
-            {doubleItems.map((item, index) => (
-              <div
-                key={index}
-                className="relative flex-none w-[280px] sm:w-[320px] lg:w-[380px] aspect-[4/5] mx-6 rounded-3xl overflow-hidden group/item"
-              >
-                {/* Image Container */}
-                <div className="h-full w-full relative overflow-hidden bg-slate-200">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover/item:scale-110"
-                  />
-                </div>
+        {/* GRID LAYOUT (FIXED MOBILE ISSUE) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10">
+          {galleryItems.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="group relative rounded-3xl overflow-hidden shadow-xl"
+            >
+              {/* Image */}
+              <div className="relative w-full h-[280px] sm:h-[320px] lg:h-[380px] overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
 
-                {/* The "Plaque" Card (Small Rectangle at Bottom) */}
-                <div className="absolute inset-x-4 bottom-4">
-                  <div className="bg-white p-5 rounded-2xl shadow-xl border border-slate-100 transform transition-all duration-500 group-hover/item:-translate-y-2">
-                    <div className="flex flex-col items-start gap-1">
-                      <span className="text-orange-600 text-[9px] font-black uppercase tracking-[0.2em] mb-1">
-                        {item.category}
-                      </span>
-                      <h3 className="text-slate-900 font-berkshire text-xl lg:text-2xl leading-none">
-                        {item.title}
-                      </h3>
-                    </div>
-
-                    {/* Minimal Highlight Bar - Grows on hover */}
-                    <div className="w-6 group-hover/item:w-full h-1 bg-orange-500/20 mt-3 transition-all duration-700 rounded-full" />
-                  </div>
-                </div>
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80" />
               </div>
-            ))}
-          </div>
+
+              {/* Content Overlay */}
+              <div className="absolute bottom-0 p-5 w-full text-white">
+                <p className="text-[10px] tracking-[0.2em] uppercase text-orange-400 font-bold mb-1">
+                  {item.category}
+                </p>
+                <h3 className="text-xl sm:text-2xl font-berkshire">
+                  {item.title}
+                </h3>
+
+                {/* Animated underline */}
+                <div className="w-6 group-hover:w-full h-[2px] bg-orange-400 mt-3 transition-all duration-500 rounded-full" />
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
-
-      <style>{`
-        @keyframes carousel-infinite {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-
-        .animate-carousel-infinite {
-          animation: carousel-infinite 40s linear infinite;
-        }
-
-        .pause-animation {
-          animation-play-state: paused;
-        }
-
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-      `}</style>
     </section>
   );
 };
