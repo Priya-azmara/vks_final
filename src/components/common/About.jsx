@@ -8,6 +8,7 @@ import {
 } from "framer-motion";
 import { HiOutlineArrowRight } from "react-icons/hi2";
 import AboutImg from "../../assets/hero2.jpg";
+import AppaImage from "../../assets/appa logo.jpeg";
 
 /* COUNTER COMPONENT */
 const StatCounter = ({ value, title, suffix = "+" }) => {
@@ -57,12 +58,12 @@ const About = () => {
       className="relative py-24 lg:py-32 bg-slate-50 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-16 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+        <div className="grid lg:grid-cols-12 gap-16 lg:gap-20 items-center">
           {/* LEFT IMAGE */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl border-[12px] border-white">
+          <div className="lg:col-span-5">
+            <div className="relative aspect-auto rounded-[2.5rem] overflow-hidden shadow-2xl border-12 border-white">
               <img
-                src={AboutImg}
+                src={AppaImage}
                 alt="VKS Artistry"
                 className="w-full h-full object-cover"
               />
@@ -71,14 +72,14 @@ const About = () => {
 
           {/* RIGHT CONTENT */}
           <div className="lg:col-span-7">
-            <h2 className="text-4xl md:text-6xl font-berkshire text-slate-900 mb-8">
+            <h1 className="text-4xl md:text-5xl font-berkshire text-center lg:text-left text-slate-900 mb-4 mt-2">
               Honoring Tradition, <br />
-              <span className="text-orange-400 font-light">
+              <span className="text-orange-400 font-semibold">
                 Defining Artistry.
               </span>
-            </h2>
+            </h1>
 
-            <p className="text-zinc-600 text-lg mb-10 max-w-2xl">
+            <p className="text-zinc-600 text-lg mb-6 max-w-2xl">
               At{" "}
               <span className="text-orange-500 font-medium italic">
                 VKS Sirpa Kalai Koodam

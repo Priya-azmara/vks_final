@@ -2,11 +2,11 @@ import React from "react";
 import { motion } from "framer-motion";
 
 // Assets
-import GodImg from "../../assets/god_image.jpg";
-import InteriorImg from "../../assets/wall_image.jpg";
-import ParkImg from "../../assets/park_image.png";
-import AnimalImg from "../../assets/animal_image.jpg";
-import TempleImg from "../../assets/img2.jpg";
+import GodImg from "../../assets/god.jpg";
+import InteriorImg from "../../assets/home-interior.jpg";
+import ParkImg from "../../assets/park_work2.jpg";
+import AnimalImg from "../../assets/bear.jpg";
+import TempleImg from "../../assets/temple_image.jpg";
 import CustomImg from "../../assets/coustomized_image.jpg";
 
 const galleryItems = [
@@ -52,7 +52,7 @@ const Gallery = () => {
               className="group relative rounded-3xl overflow-hidden shadow-xl"
             >
               {/* Image */}
-              <div className="relative w-full h-[280px] sm:h-[320px] lg:h-[380px] overflow-hidden">
+              <div className="relative w-full h-70 sm:h-80 lg:h-380px] overflow-hidden">
                 <img
                   src={item.image}
                   alt={item.title}
@@ -60,7 +60,7 @@ const Gallery = () => {
                 />
 
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent opacity-80" />
               </div>
 
               {/* Content Overlay */}
@@ -73,7 +73,7 @@ const Gallery = () => {
                 </h3>
 
                 {/* Animated underline */}
-                <div className="w-6 group-hover:w-full h-[2px] bg-orange-400 mt-3 transition-all duration-500 rounded-full" />
+                <div className="w-6 group-hover:w-full h-0.5 bg-orange-400 mt-3 transition-all duration-500 rounded-full" />
               </div>
             </motion.div>
           ))}

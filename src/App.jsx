@@ -13,6 +13,9 @@ import Footer from "./components/common/Footer.jsx";
 import Contact from "./components/common/Contact.jsx";
 import Home from "./pages/Home/HomePage.jsx";
 import WhatsAppFloat from "./components/common/WhatsappFloat.jsx";
+import BlogDetails from "./components/common/BlogDetails.jsx";
+import PrivacyPolicy from "./pages/Legal/PrivacyPolicy.jsx";
+import TermsOfService from "./pages/Legal/TermsOfService.jsx";
 /**
  * ScrollToTop helper:
  * Essential for SPAs to ensure the user starts at the top
@@ -45,6 +48,9 @@ const App = () => {
           >
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/blog/:id" element={<BlogDetails />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<TermsOfService />} />
 
               <Route path="*" element={<Home />} />
             </Routes>

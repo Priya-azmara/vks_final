@@ -5,7 +5,6 @@ import { HiOutlineArrowRight } from "react-icons/hi2";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useNavigate } from "react-router-dom";
 
 // Assets
 import SculptureImg from "../../assets/img1.jpg";
@@ -28,6 +27,7 @@ const Hero = () => {
     pauseOnHover: false,
     arrows: false,
     dotsClass: "slick-dots custom-dots",
+    accessibility: false, // keep this fix
   };
 
   const backgroundImages = [
@@ -36,7 +36,7 @@ const Hero = () => {
     { img: InteriorImg, alt: "Interior wall art design" },
   ];
 
-  // ✅ Reusable scroll function (same as navbar)
+  // ✅ SAME FUNCTION (keep this)
   const handleScroll = (id) => {
     const section = document.getElementById(id);
     if (section) {
@@ -58,7 +58,6 @@ const Hero = () => {
       {/* CONTENT */}
       <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
         <div className="w-full max-w-4xl px-6 flex flex-col items-center text-center">
-          {/* TITLE */}
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -68,7 +67,6 @@ const Hero = () => {
             Welcome to VKS Sirpa Kalai Koodam
           </motion.h1>
 
-          {/* TAGLINE */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -78,7 +76,6 @@ const Hero = () => {
             Mastering Cement Artistry Since 1985
           </motion.p>
 
-          {/* DESCRIPTION */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -91,20 +88,18 @@ const Hero = () => {
             We create customized sculptures tailored to your vision.
           </motion.p>
 
-          {/* BUTTONS */}
+          {/* ✅ ONLY CHANGE IS HERE */}
           <div className="flex flex-col sm:flex-row gap-4 pointer-events-auto">
-            {/* EXPLORE PROJECTS → GALLERY PAGE */}
             <button
-              onClick={() => navigate("/gallery")}
+              onClick={() => handleScroll("gallery")} // ✅ changed
               className="group flex items-center justify-center gap-2 px-7 py-3 text-sm font-bold text-[#1C1917] bg-orange-400 rounded-xl hover:bg-[#FAFAF9] hover:scale-105 active:scale-95 transition-all shadow-lg"
             >
               Explore Projects
               <HiOutlineArrowRight className="group-hover:translate-x-1 transition-transform" />
             </button>
 
-            {/* CONTACT PAGE */}
             <button
-              onClick={() => navigate("/contact")}
+              onClick={() => handleScroll("contact")} // ✅ changed
               className="flex items-center justify-center px-7 py-3 text-sm font-bold text-[#FAFAF9] border border-[#FAFAF9]/20 rounded-xl backdrop-blur-md hover:bg-[#FAFAF9]/10 transition-all"
             >
               Request Consultation
@@ -113,10 +108,10 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* BACKGROUND SLIDER */}
+      {/* BACKGROUND SLIDER (UNCHANGED) */}
       <Slider {...settings}>
         {backgroundImages.map((item, index) => (
-          <div key={index} className="relative w-full h-screen outline-none">
+          <div key={index} className="relative w-full h-screen" tabIndex={-1}>
             <motion.div
               initial={{ scale: 1.05 }}
               animate={{ scale: 1 }}
@@ -130,14 +125,13 @@ const Hero = () => {
                 className="w-full h-full object-cover opacity-30"
               />
 
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-b from-[#1C1917]/85 via-transparent to-[#1C1917]/95" />
+              <div className="absolute inset-0 bg-linear-to-b from-[#1C1917]/85 via-transparent to-[#1C1917]/95" />
             </motion.div>
           </div>
         ))}
       </Slider>
 
-      {/* DOTS */}
+      {/* DOTS (UNCHANGED) */}
       <style>{`
         .custom-dots {
           bottom: 40px !important;
