@@ -128,7 +128,7 @@ const Hero = () => {
                 alt={item.alt}
                 loading={index === 0 ? "eager" : "lazy"} // ✅ LCP boost
                 decoding="async"
-                fetchpriority={index === 0 ? "high" : "auto"} // ✅ performance
+                fetchPriority={index === 0 ? "high" : "auto"} // ✅ performance
                 className="w-full h-full object-cover opacity-30"
               />
 

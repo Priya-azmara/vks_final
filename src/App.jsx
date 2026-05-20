@@ -18,7 +18,7 @@ import TermsOfService from "./pages/Legal/TermsOfService.jsx";
 import WhatsAppFloat from "./components/common/WhatsappFloat.jsx";
 
 /**
- * ✅ ScrollToTop (SEO + UX)
+ * ✅ ScrollToTop (SEO + Performance Optimized)
  */
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -26,7 +26,8 @@ const ScrollToTop = () => {
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      left: 0,
+      behavior: "auto", // ✅ FIXED (no smooth for performance)
     });
   }, [pathname]);
 
@@ -38,7 +39,7 @@ const App = () => {
     <Router>
       <ScrollToTop />
 
-      {/* ✅ GLOBAL SEO (DEFAULT FALLBACK) */}
+      {/* ✅ GLOBAL SEO */}
       <Helmet>
         <title>
           VKS Sirpa Kalai Koodam | Temple Sculpture & Statue Makers in Tamil
@@ -51,11 +52,13 @@ const App = () => {
         />
 
         <meta name="robots" content="index, follow" />
+        <meta name="author" content="VKS Sirpa Kalai Koodam" />
+        <meta name="theme-color" content="#ffffff" />
 
-        {/* ✅ CANONICAL URL */}
+        {/* ✅ CANONICAL */}
         <link rel="canonical" href="https://www.vkssirpakalaikoodam.com/" />
 
-        {/* ✅ OPEN GRAPH (SOCIAL SEO) */}
+        {/* ✅ OPEN GRAPH */}
         <meta property="og:title" content="VKS Sirpa Kalai Koodam" />
         <meta
           property="og:description"
@@ -66,10 +69,22 @@ const App = () => {
           property="og:url"
           content="https://www.vkssirpakalaikoodam.com/"
         />
-        <meta property="og:image" content="/og-image.jpg" />
+        <meta
+          property="og:image"
+          content="https://www.vkssirpakalaikoodam.com/og-image.jpg"
+        />
 
-        {/* ✅ TWITTER SEO */}
+        {/* ✅ TWITTER */}
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="VKS Sirpa Kalai Koodam" />
+        <meta
+          name="twitter:description"
+          content="Temple sculpture, stone carving & custom statues in Tamil Nadu."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.vkssirpakalaikoodam.com/og-image.jpg"
+        />
 
         {/* ✅ SCHEMA MARKUP */}
         <script type="application/ld+json">
@@ -80,13 +95,14 @@ const App = () => {
             image: "https://www.vkssirpakalaikoodam.com/logo.png",
             "@id": "https://www.vkssirpakalaikoodam.com/",
             url: "https://www.vkssirpakalaikoodam.com/",
-            telephone: "+91-XXXXXXXXXX",
+            telephone: "+91-9876543210", // ✅ replace with real
+            priceRange: "₹₹",
             address: {
               "@type": "PostalAddress",
-              streetAddress: "Your Street Name",
+              streetAddress: "Your Street Name", // ✅ replace
               addressLocality: "Karur",
               addressRegion: "Tamil Nadu",
-              postalCode: "639XXX",
+              postalCode: "639XXX", // ✅ replace
               addressCountry: "IN",
             },
             geo: {
@@ -94,6 +110,8 @@ const App = () => {
               latitude: "10.9601",
               longitude: "78.0766",
             },
+            areaServed: ["Karur", "Trichy", "Namakkal"],
+            hasMap: "https://www.google.com/maps?q=10.9601,78.0766",
             openingHoursSpecification: {
               "@type": "OpeningHoursSpecification",
               dayOfWeek: [
@@ -111,7 +129,8 @@ const App = () => {
           })}
         </script>
       </Helmet>
-      {/* ✅ SKIP LINK (Accessibility + SEO) */}
+
+      {/* ✅ SKIP LINK */}
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only absolute top-2 left-2 bg-white text-black px-3 py-1 rounded"
@@ -125,7 +144,7 @@ const App = () => {
           <Navbar />
         </header>
 
-        {/* ✅ MAIN CONTENT */}
+        {/* ✅ MAIN */}
         <main
           id="main-content"
           role="main"
@@ -144,17 +163,10 @@ const App = () => {
             }
           >
             <Routes>
-              {/* ✅ HOME */}
               <Route path="/" element={<Home />} />
-
-              {/* ✅ BLOG */}
               <Route path="/blog/:id" element={<BlogDetails />} />
-
-              {/* ✅ LEGAL */}
               <Route path="/privacy" element={<PrivacyPolicy />} />
               <Route path="/terms" element={<TermsOfService />} />
-
-              {/* ✅ 404 FALLBACK */}
               <Route path="*" element={<Home />} />
             </Routes>
           </Suspense>
@@ -165,39 +177,21 @@ const App = () => {
           <Footer />
         </footer>
 
-        {/* ✅ FLOATING CTA */}
+        {/* ✅ WHATSAPP */}
         <WhatsAppFloat aria-label="Chat on WhatsApp" />
 
-        {/* ✅ TOASTER (NON-BLOCKING UI) */}
+        {/* ✅ TOASTER */}
         <Toaster
           position="top-center"
-          reverseOrder={false}
           gutter={12}
-          containerStyle={{
-            top: 20,
-            right: 20,
-          }}
           toastOptions={{
             duration: 4000,
             style: {
               borderRadius: "14px",
               background: "#ffffff",
               color: "#1e293b",
-              boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
               padding: "12px 16px",
               fontSize: "14px",
-            },
-            success: {
-              iconTheme: {
-                primary: "#ea580c",
-                secondary: "#fff",
-              },
-            },
-            error: {
-              iconTheme: {
-                primary: "#dc2626",
-                secondary: "#fff",
-              },
             },
           }}
         />
