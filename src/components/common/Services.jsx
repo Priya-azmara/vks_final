@@ -59,34 +59,55 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-20 lg:py-28 bg-[#FAFAF9]">
+    <section
+      id="services"
+      role="region"
+      aria-labelledby="services-heading"
+      className="py-20 lg:py-28 bg-[#FAFAF9]"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
         <div className="text-center mb-16">
-          <p className="text-orange-600 font-bold tracking-[0.3em] text-xs mb-3 uppercase">
+          <p
+            className="text-orange-600 font-bold tracking-[0.3em] text-xs mb-3 uppercase"
+            aria-label="Our expertise"
+          >
             Our Expertise
           </p>
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-berkshire text-slate-900">
+
+          <h2
+            id="services-heading"
+            className="text-3xl sm:text-5xl lg:text-6xl font-berkshire text-slate-900"
+            aria-label="Sculpture services offered by VKS Sirpa Kalai Koodam"
+          >
             Crafted <span className="text-orange-500">Services</span>
           </h2>
         </div>
 
         {/* GRID */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          role="list"
+          aria-label="List of sculpture services"
+        >
           {services.map((service, index) => (
             <motion.div
               key={index}
+              role="listitem"
+              aria-label={`${service.title} - ${service.desc}`}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.08, duration: 0.5 }}
               viewport={{ once: true }}
               className="group bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
             >
-              {/* IMAGE (FIXED RATIO) */}
+              {/* IMAGE */}
               <div className="w-full h-90 aspect-video overflow-hidden">
                 <img
                   src={service.image}
-                  alt={service.title}
+                  alt={`${service.title} sculpture by VKS Sirpa Kalai Koodam`}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
                 />
               </div>
@@ -94,7 +115,10 @@ const Services = () => {
               {/* CONTENT */}
               <div className="p-6">
                 {/* ICON */}
-                <div className="w-11 h-11 bg-orange-50 text-orange-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange-600 group-hover:text-white transition duration-300">
+                <div
+                  className="w-11 h-11 bg-orange-50 text-orange-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange-600 group-hover:text-white transition duration-300"
+                  aria-hidden="true"
+                >
                   {service.icon}
                 </div>
 

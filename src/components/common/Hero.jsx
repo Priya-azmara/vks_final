@@ -27,16 +27,15 @@ const Hero = () => {
     pauseOnHover: false,
     arrows: false,
     dotsClass: "slick-dots custom-dots",
-    accessibility: false, // keep this fix
+    accessibility: false,
   };
 
   const backgroundImages = [
-    { img: SculptureImg, alt: "Temple sculpture design" },
-    { img: ParkImg, alt: "Park artistic sculptures" },
-    { img: InteriorImg, alt: "Interior wall art design" },
+    { img: SculptureImg, alt: "Temple cement sculpture design India" },
+    { img: ParkImg, alt: "Outdoor park sculpture artwork design" },
+    { img: InteriorImg, alt: "Interior custom wall sculpture design" },
   ];
 
-  // ✅ SAME FUNCTION (keep this)
   const handleScroll = (id) => {
     const section = document.getElementById(id);
     if (section) {
@@ -53,6 +52,8 @@ const Hero = () => {
   return (
     <section
       id="home"
+      role="region"
+      aria-label="Hero section showcasing VKS Sirpa Kalai Koodam services"
       className="relative w-full h-screen overflow-hidden bg-[#2C2416]"
     >
       {/* CONTENT */}
@@ -83,15 +84,13 @@ const Hero = () => {
             className="mb-10 text-[#FAFAF9]/80 font-outfit text-sm md:text-lg leading-relaxed max-w-2xl"
           >
             Experts in temple and park sculpture design, and elegant home
-            interiors.
-            <br className="hidden md:block" />
-            We create customized sculptures tailored to your vision.
+            interiors. We create customized sculptures tailored to your vision.
           </motion.p>
 
-          {/* ✅ ONLY CHANGE IS HERE */}
           <div className="flex flex-col sm:flex-row gap-4 pointer-events-auto">
             <button
-              onClick={() => handleScroll("gallery")} // ✅ changed
+              onClick={() => handleScroll("gallery")}
+              aria-label="View our sculpture gallery projects"
               className="group flex items-center justify-center gap-2 px-7 py-3 text-sm font-bold text-[#1C1917] bg-orange-400 rounded-xl hover:bg-[#FAFAF9] hover:scale-105 active:scale-95 transition-all shadow-lg"
             >
               Explore Projects
@@ -99,7 +98,8 @@ const Hero = () => {
             </button>
 
             <button
-              onClick={() => handleScroll("contact")} // ✅ changed
+              onClick={() => handleScroll("contact")}
+              aria-label="Request a consultation for sculpture services"
               className="flex items-center justify-center px-7 py-3 text-sm font-bold text-[#FAFAF9] border border-[#FAFAF9]/20 rounded-xl backdrop-blur-md hover:bg-[#FAFAF9]/10 transition-all"
             >
               Request Consultation
@@ -108,10 +108,15 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* BACKGROUND SLIDER (UNCHANGED) */}
+      {/* BACKGROUND SLIDER */}
       <Slider {...settings}>
         {backgroundImages.map((item, index) => (
-          <div key={index} className="relative w-full h-screen" tabIndex={-1}>
+          <div
+            key={index}
+            className="relative w-full h-screen"
+            tabIndex={-1}
+            aria-hidden="true"
+          >
             <motion.div
               initial={{ scale: 1.05 }}
               animate={{ scale: 1 }}
@@ -121,7 +126,9 @@ const Hero = () => {
               <img
                 src={item.img}
                 alt={item.alt}
-                loading="lazy"
+                loading={index === 0 ? "eager" : "lazy"} // ✅ LCP boost
+                decoding="async"
+                fetchpriority={index === 0 ? "high" : "auto"} // ✅ performance
                 className="w-full h-full object-cover opacity-30"
               />
 
@@ -131,7 +138,7 @@ const Hero = () => {
         ))}
       </Slider>
 
-      {/* DOTS (UNCHANGED) */}
+      {/* DOTS */}
       <style>{`
         .custom-dots {
           bottom: 40px !important;
