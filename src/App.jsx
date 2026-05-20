@@ -12,7 +12,7 @@ import Navbar from "./components/common/Navbar.jsx";
 import Footer from "./components/common/Footer.jsx";
 import Home from "./pages/Home/HomePage.jsx";
 import BlogDetails from "./components/common/BlogDetails.jsx";
-import PrivacyPolicy from "./pages/legal/PrivacyPolicy.jsx";
+import PrivacyPolicy from "./pages/Legal/PrivacyPolicy.jsx";
 import TermsOfService from "./pages/Legal/TermsOfService.jsx";
 import WhatsAppFloat from "./components/common/WhatsappFloat.jsx";
 

@@ -1,42 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset 
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <!-- HOME -->
   <url>
-    <loc>https://yourdomain.com/</loc>
+    <loc>https://www.vkssirpakalaikoodam.com/</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- PRIVACY -->
+  <!-- PRIVACY POLICY -->
   <url>
-    <loc>https://yourdomain.com/privacy</loc>
+    <loc>https://www.vkssirpakalaikoodam.com/privacy</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
 
-  <!-- TERMS -->
+  <!-- TERMS OF SERVICE -->
   <url>
-    <loc>https://yourdomain.com/terms</loc>
+    <loc>https://www.vkssirpakalaikoodam.com/terms</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
 
-  <!-- BLOG EXAMPLES (ADD DYNAMICALLY LATER) -->
+  <!-- WORK PORTFOLIO & BLOG RESTORATIONS -->
   <url>
-    <loc>https://yourdomain.com/blog/temple-sculpture-design</loc>
+    <loc>https://www.vkssirpakalaikoodam.com/blog/temple-sculpture-design</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://yourdomain.com/blog/stone-carving-process</loc>
+    <loc>https://www.vkssirpakalaikoodam.com/blog/stone-carving-process</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
