@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import {  AnimatePresence } from "framer-motion";
 import Logo from "../../assets/vks logo.png";
 
 const Navbar = () => {
@@ -8,7 +8,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  // ✅ 1. Intersection Observer updates active status & URL hash without jarring jump
+  // ✅ Intersection Observer (NO URL HASH UPDATE)
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
 
@@ -16,19 +16,14 @@ const Navbar = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const id = entry.target.id;
-            setActiveSection(id);
-            // Update URL hash without causing a page jump
-            if (window.location.hash !== `#${id}`) {
-              window.history.replaceState(null, "", `#${id}`);
-            }
+            setActiveSection(entry.target.id);
           }
         });
       },
       {
         rootMargin: "-40% 0px -50% 0px",
         threshold: 0.1,
-      },
+      }
     );
 
     sections.forEach((section) => observer.observe(section));
@@ -36,18 +31,7 @@ const Navbar = () => {
     return () => sections.forEach((section) => observer.unobserve(section));
   }, []);
 
-  // ✅ 2. Handle initial page load if URL has an existing hash (e.g., user reloads on #services)
-  useEffect(() => {
-    if (window.location.hash) {
-      const id = window.location.hash.substring(1);
-      // Small timeout allows the DOM to fully render before trying to scroll
-      setTimeout(() => {
-        handleScroll(null, id);
-      }, 100);
-    }
-  }, []);
-
-  // Navbar background scroll
+  // ✅ Navbar scroll background
   useEffect(() => {
     const onScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -57,7 +41,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Prevent background scroll
+  // ✅ Prevent background scroll (mobile menu)
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
   }, [isOpen]);
@@ -75,9 +59,9 @@ const Navbar = () => {
     { id: "contact", name: "Contact" },
   ];
 
-  // ✅ 3. Fixed smooth scroll handling actual anchor click events
+  // ✅ Smooth scroll WITHOUT hash
   const handleScroll = (e, id) => {
-    if (e) e.preventDefault(); // Prevent native instant browser jump
+    if (e) e.preventDefault();
 
     const section = document.getElementById(id);
     const header = document.querySelector("header");
@@ -92,8 +76,6 @@ const Navbar = () => {
         behavior: "smooth",
       });
 
-      // Update the hash in history
-      window.history.pushState(null, "", `#${id}`);
       setActiveSection(id);
     }
 
@@ -110,16 +92,16 @@ const Navbar = () => {
       <nav
         role="navigation"
         aria-label="Main Navigation"
-        className="max-w-7xl mx-auto px-6 lg:px-16 flex items-center justify-between relative h-14"
+        className="max-w-7xl mx-auto px-6 lg:px-16 flex items-center justify-between h-14"
       >
-        {/* LOGO - Now an anchor tag for SEO linking to root/home */}
+        {/* ✅ LOGO (CLEAN URL) */}
         <a
-          href="#home"
+          href="/"
           onClick={(e) => handleScroll(e, "home")}
-          aria-label="VKS Sirpa Kalai Koodam - Go to homepage"
-          className="flex items-center gap-3 text-left group focus:outline-none z-50 no-underline"
+          aria-label="Go to homepage"
+          className="flex items-center gap-3 z-50 no-underline"
         >
-          <div className="relative w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-xl overflow-hidden">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden">
             <img
               src={Logo}
               alt="VKS Sirpa Kalai Koodam Logo"
@@ -128,8 +110,8 @@ const Navbar = () => {
             />
           </div>
 
-          <div className="flex flex-col justify-center">
-            <span className="text-lg sm:text-xl font-bold tracking-tight text-brand-primary leading-none mb-1">
+          <div className="flex flex-col">
+            <span className="text-lg sm:text-xl font-bold text-brand-primary">
               VKS{" "}
               <span className="text-brand-gold uppercase font-berkshire">
                 Sirpa
@@ -141,75 +123,63 @@ const Navbar = () => {
           </div>
         </a>
 
-        {/* DESKTOP NAV - Changed elements from buttons to real anchor links */}
-        <ul className="hidden lg:flex items-center gap-8 xl:gap-10">
+        {/* ✅ DESKTOP NAV */}
+        <ul className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
             <li key={link.id}>
               <a
-                href={`#${link.id}`}
+                href="/"
                 onClick={(e) => handleScroll(e, link.id)}
                 aria-current={activeSection === link.id ? "page" : undefined}
-                className={`relative text-sm font-bold tracking-wide py-2 block transition-colors dynamic-link ${
+                className={`text-sm font-bold transition-colors ${
                   activeSection === link.id
-                    ? "text-brand-accent font-extrabold"
+                    ? "text-brand-accent"
                     : "text-brand-primary/80 hover:text-brand-accent"
                 }`}
               >
                 {link.name}
-                <span
-                  className={`absolute bottom-0 left-0 h-0.5 bg-brand-gold transition-all duration-300 ${
-                    activeSection === link.id
-                      ? "w-full"
-                      : "w-0 group-hover:w-full"
-                  }`}
-                />
               </a>
             </li>
           ))}
         </ul>
 
-        {/* CTA BUTTON */}
-        <div className="hidden lg:flex items-center">
+        {/* ✅ CTA */}
+        <div className="hidden lg:flex">
           <a
-            href="#contact"
+            href="/"
             onClick={(e) => handleScroll(e, "contact")}
-            className="group flex items-center gap-2 px-5 py-2.5 bg-brand-accent text-white text-xs font-black uppercase rounded-xl no-underline hover:opacity-90 transition-opacity"
+            className="flex items-center gap-2 px-5 py-2.5 bg-brand-accent text-white text-xs font-black rounded-xl"
           >
-            <span>Get a Quote</span>
-            <ArrowRight size={14} />
+            Get a Quote <ArrowRight size={14} />
           </a>
         </div>
 
-        {/* MOBILE TRIGGER BUTTON */}
+        {/* ✅ MOBILE BUTTON */}
         <button
           onClick={toggleMenu}
-          aria-label="Toggle mobile menu"
-          aria-expanded={isOpen}
-          className="lg:hidden p-2 text-brand-primary z-50 rounded-xl focus:outline-none"
+          aria-label="Toggle menu"
+          className="lg:hidden p-2 z-50"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </nav>
 
-      {/* MOBILE MENU */}
+      {/* ✅ MOBILE MENU */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            role="dialog"
-            aria-modal="true"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-white z-40 lg:hidden h-dvh flex flex-col pt-28 px-6"
+            className="fixed inset-0 bg-white z-40 lg:hidden flex flex-col pt-28 px-6"
           >
             <div className="flex flex-col gap-5 my-auto">
               {navLinks.map((link) => (
                 <a
                   key={link.id}
-                  href={`#${link.id}`}
+                  href="/"
                   onClick={(e) => handleScroll(e, link.id)}
-                  className={`text-3xl font-black text-left border-b pb-3 no-underline ${
+                  className={`text-3xl font-black border-b pb-3 ${
                     activeSection === link.id
                       ? "text-brand-accent"
                       : "text-brand-primary"

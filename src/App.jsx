@@ -32,39 +32,35 @@ const App = () => {
   return (
     <Router>
       <ScrollToTop />
-
       <Helmet>
+        {/* ✅ Primary SEO */}
         <title>
-          VKS Sirpa Kalai Koodam | Temple Sculpture & Statue Makers in Tamil
-          Nadu
+          VKS Sirpa Kalai Koodam | Temple Sculpture & Statue Makers in Tamil Nadu
         </title>
-
         <meta
           name="description"
           content="VKS Sirpa Kalai Koodam offers temple sculpture, stone carving, and custom statue services in Karur, Trichy, and Namakkal."
         />
-
         <meta name="robots" content="index, follow" />
         <meta name="author" content="VKS Sirpa Kalai Koodam" />
         <meta name="theme-color" content="#ffffff" />
-
-        <link rel="canonical" href="https://www.vkssirpakalaikoodam.com/" />
-
+        {/* ✅ Mobile Optimization */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {/* ✅ Correct Canonical URL */}
+        <link rel="canonical" href="https://www.vkssirapakalai.com/" />
+        {/* ✅ Open Graph (Social Sharing) */}
         <meta property="og:title" content="VKS Sirpa Kalai Koodam" />
         <meta
           property="og:description"
           content="Temple sculpture, stone carving & custom statues in Tamil Nadu."
         />
         <meta property="og:type" content="website" />
-        <meta
-          property="og:url"
-          content="https://www.vkssirpakalaikoodam.com/"
-        />
+        <meta property="og:url" content="https://www.vkssirapakalai.com/" />
         <meta
           property="og:image"
-          content="https://www.vkssirpakalaikoodam.com/og-image.jpg"
+          content="https://www.vkssirapakalai.com/og-image.jpg"
         />
-
+        {/* ✅ Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="VKS Sirpa Kalai Koodam" />
         <meta
@@ -73,11 +69,14 @@ const App = () => {
         />
         <meta
           name="twitter:image"
-          content="https://www.vkssirpakalaikoodam.com/og-image.jpg"
+          content="https://www.vkssirapakalai.com/og-image.jpg"
         />
+
+        {/* ✅ Performance Boost */}
+        <link rel="preconnect" href="https://www.vkssirapakalai.com" />
       </Helmet>
 
-      {/* Skip Link */}
+      {/* ✅ Accessibility Skip Link */}
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only absolute top-2 left-2 bg-white text-black px-3 py-1 rounded"
@@ -86,7 +85,7 @@ const App = () => {
       </a>
 
       <div className="flex flex-col min-h-screen">
-        <header role="banner">
+        <header role="banner" aria-label="Website Header">
           <Navbar />
         </header>
 
@@ -115,7 +114,7 @@ const App = () => {
           </Suspense>
         </main>
 
-        <footer role="contentinfo">
+        <footer role="contentinfo" aria-label="Website Footer">
           <Footer />
         </footer>
 

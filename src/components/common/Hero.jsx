@@ -27,7 +27,7 @@ const Hero = () => {
     pauseOnHover: false,
     arrows: false,
     dotsClass: "slick-dots custom-dots",
-    accessibility: false,
+    accessibility: true,
   };
 
   const backgroundImages = [
