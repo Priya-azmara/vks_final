@@ -12,8 +12,6 @@ import Navbar from "./components/common/Navbar.jsx";
 import Footer from "./components/common/Footer.jsx";
 import Home from "./pages/Home/HomePage.jsx";
 import BlogDetails from "./components/common/BlogDetails.jsx";
-
-import TermsOfService from "./pages/Legal/TermsOfService.jsx";
 import WhatsAppFloat from "./components/common/WhatsappFloat.jsx";
 
 const ScrollToTop = () => {
@@ -112,8 +110,6 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/blog/:id" element={<BlogDetails />} />
-
-              <Route path="/terms" element={<TermsOfService />} />
               <Route path="*" element={<Home />} />
             </Routes>
           </Suspense>
