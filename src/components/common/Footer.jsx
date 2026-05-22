@@ -163,14 +163,17 @@ const Footer = () => {
 
           {/* Contact Details Stack */}
           <div className="text-center sm:text-left">
-            <h4 className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-8 border-l-2 border-orange-600 pl-4">
+            <h4 className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-6 border-l-2 sm:border-l-2 border-orange-600 pl-4 sm:pl-4 inline-block sm:block">
               The Studio
             </h4>
+
             <div className="space-y-6 flex flex-col items-center sm:items-start">
-              <div className="flex gap-4 items-start text-left">
-                <div className="p-2.5 bg-orange-600/10 text-orange-500 rounded-xl border border-orange-600/10 hidden sm:block mt-0.5">
-                  <FiMapPin size={16} />
+              {/* Location */}
+              <div className="flex items-start gap-3 text-left max-w-[220px] sm:max-w-none">
+                <div className="p-2 bg-orange-600/10 text-orange-500 rounded-lg border border-orange-600/10 mt-1">
+                  <FiMapPin size={14} />
                 </div>
+
                 <div className="text-sm">
                   <span className="block text-white font-bold mb-1">
                     Main Workshop
@@ -178,17 +181,20 @@ const Footer = () => {
                   <p className="text-stone-400/90">Karur, Tamil Nadu, India</p>
                 </div>
               </div>
-              <div className="flex gap-4 items-start text-left">
-                <div className="p-2.5 bg-orange-600/10 text-orange-500 rounded-xl border border-orange-600/10 hidden sm:block mt-0.5">
-                  <FiPhone size={16} />
+
+              {/* Phone */}
+              <div className="flex items-start gap-3 text-left max-w-[220px] sm:max-w-none">
+                <div className="p-2 bg-orange-600/10 text-orange-500 rounded-lg border border-orange-600/10 mt-1">
+                  <FiPhone size={14} />
                 </div>
+
                 <div className="text-sm">
                   <span className="block text-white font-bold mb-1">
                     Direct Inquiry
                   </span>
                   <a
                     href="tel:+919865390925"
-                    className="text-orange-500 font-bold hover:text-orange-400 transition-colors text-base tracking-wide block"
+                    className="text-orange-500 font-semibold hover:text-orange-400 transition-colors text-base tracking-wide"
                   >
                     +91 98653 90925
                   </a>
