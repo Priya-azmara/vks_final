@@ -66,7 +66,7 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-grow lg:w-72 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:ring-2 ring-orange-500/50 transition-all placeholder:text-stone-600 text-sm"
+                className="grow lg:w-72 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:ring-2 ring-orange-500/50 transition-all placeholder:text-stone-600 text-sm"
                 required
               />
               <button className="bg-orange-600 hover:bg-orange-500 text-white px-8 py-4 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 transition-all active:scale-95 shadow-lg shadow-orange-900/20">
@@ -169,7 +169,7 @@ const Footer = () => {
 
             <div className="space-y-6 flex flex-col items-center sm:items-start">
               {/* Location */}
-              <div className="flex items-start gap-3 text-left max-w-[220px] sm:max-w-none">
+              <div className="flex items-start gap-3 text-left max-w-55 sm:max-w-none">
                 <div className="p-2 bg-orange-600/10 text-orange-500 rounded-lg border border-orange-600/10 mt-1">
                   <FiMapPin size={14} />
                 </div>
@@ -183,7 +183,7 @@ const Footer = () => {
               </div>
 
               {/* Phone */}
-              <div className="flex items-start gap-3 text-left max-w-[220px] sm:max-w-none">
+              <div className="flex items-start gap-3 text-left max-w-55 sm:max-w-none">
                 <div className="p-2 bg-orange-600/10 text-orange-500 rounded-lg border border-orange-600/10 mt-1">
                   <FiPhone size={14} />
                 </div>
@@ -229,7 +229,7 @@ const Footer = () => {
           </div>
 
           {/* Developer & Company Tag */}
-          <div className="flex flex-wrap justify-center items-center gap-y-4 gap-x-3 text-[11px] font-medium text-stone-500 tracking-wide bg-white/[0.02] px-8 py-3 rounded-full border border-white/5 shadow-inner">
+          <div className="flex flex-wrap justify-center items-center gap-y-4 gap-x-3 text-[11px] font-medium text-stone-500 tracking-wide bg-white/2 px-8 py-3 rounded-full border border-white/5 shadow-inner">
             <span>Developed with</span>
             <motion.span
               animate={{ scale: [1, 1.3, 1] }}
@@ -253,7 +253,7 @@ const Footer = () => {
               className="text-orange-500 font-black hover:text-white transition-all group relative tracking-widest"
             >
               Webxode Technologies
-              <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white transition-all group-hover:w-full"></span>
+              <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-white transition-all group-hover:w-full"></span>
             </a>
           </div>
         </div>
