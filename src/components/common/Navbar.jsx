@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
-import {  AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion"; // ✅ Fixed: Added 'motion' import here
 import Logo from "../../assets/vks logo.png";
 
 const Navbar = () => {
@@ -23,7 +23,7 @@ const Navbar = () => {
       {
         rootMargin: "-40% 0px -50% 0px",
         threshold: 0.1,
-      }
+      },
     );
 
     sections.forEach((section) => observer.observe(section));
@@ -163,35 +163,55 @@ const Navbar = () => {
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </nav>
-
-      {/* ✅ MOBILE MENU */}
+      {/* ✅ MOBILE MENU (RESPONSIVE PROFESSIONAL VERSION) */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 bg-white z-40 lg:hidden flex flex-col pt-28 px-6"
+            exit={{ opacity: 0, y: -15 }}
+            className="fixed inset-0 bg-white z-40 lg:hidden"
           >
-            <div className="flex flex-col gap-5 my-auto">
-              {navLinks.map((link) => (
+            <div className="flex flex-col h-full px-6">
+              {/* TOP HEADER */}
+              <div className="pt-20 text-center">
+                {/* <h2 className="text-base font-bold text-brand-primary">
+                  VKS Menu
+                </h2> */}
+              </div>
+
+              {/* CENTER NAV LINKS */}
+              <div className="flex flex-col justify-center items-center flex-1 gap-5">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.id}
+                    href="/"
+                    onClick={(e) => handleScroll(e, link.id)}
+                    className={`text-lg font-semibold transition-all duration-200 ${
+                      activeSection === link.id
+                        ? "text-brand-accent"
+                        : "text-brand-primary/80"
+                    }`}
+                  >
+                    {link.name}
+                  </a>
+                ))}
+              </div>
+
+              {/* BOTTOM CTA */}
+              <div className="pb-10">
                 <a
-                  key={link.id}
                   href="/"
-                  onClick={(e) => handleScroll(e, link.id)}
-                  className={`text-3xl font-black border-b pb-3 ${
-                    activeSection === link.id
-                      ? "text-brand-accent"
-                      : "text-brand-primary"
-                  }`}
+                  onClick={(e) => handleScroll(e, "contact")}
+                  className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-brand-accent text-white text-sm font-bold rounded-xl shadow-md"
                 >
-                  {link.name}
+                  Get a Quote <ArrowRight size={16} />
                 </a>
-              ))}
+              </div>
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>{" "}
     </header>
   );
 };
